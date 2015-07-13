@@ -7,4 +7,4 @@ It doesn't just have to be a database substitute, it can be used as a storage me
 ## Why should I use it?
 It's extremely lightweight as a library and saves you the bother of trying to save complex data in localStorage.
 ## How do I use it?
-TBC
+It is not ready for it's first release yet, so there's no point familiarising yourself with it until it is ready for use.
