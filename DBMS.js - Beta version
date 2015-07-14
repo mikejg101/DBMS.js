@@ -48,6 +48,12 @@ DBMS.selectProperty = function(name, arr){
 	}
 }
 
+/* Retrieving existing data */
+
+if(DBMS.retrieve('databases') != null){
+	DBMS.databases = DBMS.retrieve('databases');
+}
+
 /* Databases */
 
 //function to create a database
