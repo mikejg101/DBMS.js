@@ -48,12 +48,6 @@ DBMS.selectProperty = function(name, arr){
 	}
 }
 
-/* Retrieving existing data */
-
-if(DBMS.retrieve('databases') != null){
-	DBMS.databases = DBMS.retrieve('databases');
-}
-
 /* Databases */
 
 //function to create a database
@@ -151,4 +145,31 @@ DBMS.selectWhere = function(queries, table){
 		}
 		return results;
 	}
+}
+
+/* Initialise application */
+
+//retrieving existing data
+
+if(DBMS.retrieve('databases') != null){
+	DBMS.databases = DBMS.retrieve('databases');
+}
+
+//initialize application for first load
+
+DBMS.firstTime = true;
+
+if(DBMS.firstTime){
+	DBMS.post('DBMS.firstTime', 'false');
+}
+
+if(DBMS.retrieve('DBMS.firstTime') != null){
+	DBMS.firstTime = false;
+}
+
+DBMS.initializeApplication = function(onFirstLoad){
+	if(DBMS.firstTime){
+		onFirstLoad();
+	}
+	return DBMS.firstTime;
 }
