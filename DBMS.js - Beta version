@@ -1,5 +1,5 @@
 //library object
-var DBMS = {};
+var DBMS = DBMS || {};
 
 //where databases are stored during session
 DBMS.databases = [];
