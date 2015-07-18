@@ -155,18 +155,17 @@ if(DBMS.retrieve('databases') != null){
 	DBMS.databases = DBMS.retrieve('databases');
 }
 
-//initialize application for first load
+DBMS.databases = (DBMS.retrieve('databases') != null) ? DBMS.retrieve('databases') : [];
 
-DBMS.firstTime = true;
+//initialize application on first load
+
+DBMS.firstTime = (DBMS.retrieve('DBMS.firstTime') === null);
 
 if(DBMS.firstTime){
 	DBMS.post('DBMS.firstTime', 'false');
 }
 
-if(DBMS.retrieve('DBMS.firstTime') != null){
-	DBMS.firstTime = false;
-}
-
+//function to execute code only on the first ever session
 DBMS.initializeApplication = function(onFirstLoad){
 	if(DBMS.firstTime){
 		onFirstLoad();
