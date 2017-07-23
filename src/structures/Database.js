@@ -27,7 +27,7 @@ var halcyon = (function (halcyon, databases, storage) {
         /**
          * @name addTable
          * @param {string} name
-         * @param columns
+         * @param {Column[]} columns
          * @memberOf Database
          */
         this.addTable = function (name, columns) {
