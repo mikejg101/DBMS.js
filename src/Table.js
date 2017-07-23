@@ -8,11 +8,11 @@ DBMS.createTable = function(database, name, cols){
 		rows: []
 	});
 	this.postAll();
-}
+};
 
 //function to select a table
 DBMS.selectTable = function(database, table){
 	return this.selectProperty(table, this.selectDatabase(database).tables);
-}
+};
 
 /* Needs more methods, deleteTable, deleteColumn, addColumn etc. */

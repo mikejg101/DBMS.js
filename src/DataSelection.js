@@ -26,4 +26,4 @@ DBMS.selectWhere = function(queries, table){
 		}
 		return results;
 	}
-}
+};

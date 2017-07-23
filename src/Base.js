@@ -10,24 +10,24 @@ DBMS.databases = [];
 DBMS.post = function(name, data){
 	data = JSON.stringify(data);
 	localStorage.setItem(name, data);
-}
+};
 
 //retrieve localstorage json
 DBMS.retrieve = function(name){
 	return JSON.parse(localStorage.getItem(name));
-}
+};
 
 //localstorage databases; executes whenever a change is made anywhere
 DBMS.postAll = function(){
 	this.post('databases', this.databases);
-}
+};
 
 //reset DBMS, delete everything
 DBMS.empty = function(){
 	DBMS.databases = [];
 	this.postAll();
 	localStorage.removeItem('databases');
-}
+};
 
 //function to run through arrays for finding data
 DBMS.selectProperty = function(name, arr){
@@ -36,8 +36,8 @@ DBMS.selectProperty = function(name, arr){
 		try{
 			if(arr[c].name === name){
 				nameNum = c;
-			};
-		}catch(e){
+            }
+        } catch (e) {
 			console.warn('Property not found. Either does not exist or has been deleted. Error: '+e);
 		}
 	}
@@ -48,4 +48,4 @@ DBMS.selectProperty = function(name, arr){
 	}else{
 		
 	}
-}
+};

@@ -6,7 +6,7 @@ DBMS.addData = function(database, table, data){
 		this.selectTable(database, table).rows.push(data);
 	}
 	this.postAll();
-}
+};
 
 //function to select rows from a table
 DBMS.selectData = function(col, table, row){
@@ -19,6 +19,6 @@ DBMS.selectData = function(col, table, row){
 	if(nameNum != -1){
 		return table.rows[row][nameNum];
 	}
-}
+};
 
 /* Needs functions to do actions similar to that of SQL */
