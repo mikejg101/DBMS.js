@@ -1,32 +1,54 @@
-/* Base properties and methods */
-
-//Library namespace
+/**
+ * @namespace halcyon
+ */
 var halcyon = (function (halcyon) {
 
     //where databases are stored during session
-    halcyon.databases = [];
+    var databases = [];
 
-    //localstorage post json function
-    halcyon.post = function (name, data) {
-        data = JSON.stringify(data);
-        localStorage.setItem(name, data);
-    };
-
-    //retrieve localstorage json
-    halcyon.retrieve = function (name) {
-        return JSON.parse(localStorage.getItem(name));
-    };
-
-    //localstorage databases; executes whenever a change is made anywhere
-    halcyon.postAll = function () {
-        this.post('databases', this.databases);
-    };
-
-    //reset DBMS, delete everything
-    halcyon.empty = function () {
-        halcyon.databases = [];
+    /**
+     * @description function to create a database
+     * @param {string} name
+     */
+    halcyon.createDatabase = function (name) {
+        databases.push({
+            name: name,
+            tables: []
+        });
         this.postAll();
-        localStorage.removeItem('databases');
+    };
+
+    /**
+     * @description function to select a database
+     * @param {object} database
+     */
+    halcyon.selectDatabase = function (database) {
+        return this.selectProperty(database, databases, arguments[1]);
+    };
+
+    /**
+     * @description delete an entire database
+     * @param {object} database
+     */
+    halcyon.deleteDatabase = function (database) {
+        databases.splice(this.selectDatabase(database, true), 1);
+        this.postAll();
+    };
+
+    halcyon.clearAll = function () {
+        databases = [];
+    };
+
+    halcyon.getData = function () {
+        return JSON.stringify(databases);
+    };
+
+    /**
+     * @description empty a database of it's tables
+     * @param {object} database
+     */
+    halcyon.emptyDatabase = function (database) {
+        database.tables = [];
     };
 
     //function to run through arrays for finding data
