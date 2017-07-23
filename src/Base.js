@@ -3,55 +3,31 @@
  */
 var halcyon = (function (halcyon) {
 
-    //where databases are stored during session
-    var databases = [];
-
-    /**
-     * @description function to create a database
-     * @param {string} name
-     */
-    halcyon.createDatabase = function (name) {
-        databases.push({
-            name: name,
-            tables: []
-        });
-        this.postAll();
-    };
-
     /**
      * @description function to select a database
-     * @param {object} database
+     * @param {string} databaseName
+     * @memberOf halcyon
      */
-    halcyon.selectDatabase = function (database) {
-        return this.selectProperty(database, databases, arguments[1]);
-    };
-
-    /**
-     * @description delete an entire database
-     * @param {object} database
-     */
-    halcyon.deleteDatabase = function (database) {
-        databases.splice(this.selectDatabase(database, true), 1);
-        this.postAll();
-    };
-
-    halcyon.clearAll = function () {
-        databases = [];
-    };
-
-    halcyon.getData = function () {
-        return JSON.stringify(databases);
+    halcyon.selectDatabase = function (databaseName) {
+        return this.selectProperty(databaseName, databases, arguments[1]);
     };
 
     /**
      * @description empty a database of it's tables
      * @param {object} database
+     * @memberOf halcyon
      */
     halcyon.emptyDatabase = function (database) {
         database.tables = [];
     };
 
-    //function to run through arrays for finding data
+    /**
+     * @description function to run through arrays for finding data
+     * @param name
+     * @param arr
+     * @returns {*}
+     * @memberOf halcyon
+     */
     halcyon.selectProperty = function (name, arr) {
         var nameNum = -1;
         for (var c = 0; c < arr.length; c++) {
