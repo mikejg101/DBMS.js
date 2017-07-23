@@ -1,4 +1,3 @@
-/* Storage */
 var halcyon = (function (halcyon) {
 
     /**

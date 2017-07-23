@@ -6,7 +6,44 @@ var halcyon = (function (halcyon, databases, storage) {
      * @constructor Database
      */
     function Database(name) {
+        var tables = halcyon.CreateTableCollection();
+
+        /**
+         * @name name
+         * @type {string}
+         * @memberOf Database
+         */
         this.name = name;
+
+        /**
+         * @name getTables
+         * @returns {string}
+         * @memberOf Database
+         */
+        this.getTables = function () {
+            return tables.data();
+        };
+
+        /**
+         * @name addTable
+         * @param {string} name
+         * @param columns
+         * @memberOf Database
+         */
+        this.addTable = function (name, columns) {
+            tables.insert(halcyon.createTable(name, columns));
+            storage.postAll();
+        };
+
+        /**
+         * @name clearAll
+         * @description empty this database of its tables
+         * @memberOf Database
+         */
+        this.clearAll = function () {
+            tables.clear();
+            storage.postAll();
+        };
     }
 
     /**

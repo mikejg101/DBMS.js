@@ -1,25 +1,50 @@
-/* Tables */
 var halcyon = (function (halcyon) {
 
-    //function to create a table within a database
-    halcyon.createTable = function (database, name, cols) {
-        this.selectDatabase(database).tables.push({
-            name: name,
-            columns: cols,
-            rows: []
-        });
-        this.postAll();
-    };
+    /**
+     * @name Table
+     * @param {string} name
+     * @param {{name:string, type:string}[]} columns
+     * @constructor Table
+     */
+    function Table(name, columns) {
 
-    //function to select a table
-    halcyon.selectTable = function (database, table) {
-        return this.selectProperty(table, this.selectDatabase(database).tables);
-    };
+        /**
+         * @name name
+         * @type {string}
+         * @memberOf Table
+         */
+        this.name = name;
 
-    /* Needs more methods, deleteTable, deleteColumn, addColumn etc. */
+        /**
+         * @name columns
+         * @type {{name: string, type: string}[]}
+         * @memberOf Table
+         */
+        this.columns = columns;
+
+        /**
+         * @name rows
+         * @type {Array}
+         * @memberOf Table
+         */
+        this.rows = [];
+
+        //TODO Needs more methods, deleteTable, deleteColumn, addColumn etc. */
+
+    }
+
+    /**
+     * @name createTable
+     * @description function to create a table within a database
+     * @param {string} name
+     * @param {{name:string, type:string}[]} cols
+     * @memberOf halcyon
+     */
+    halcyon.createTable = function (name, cols) {
+        return new Table(name, cols);
+    };
 
     return halcyon;
 }(halcyon || {}));
-
 
 
