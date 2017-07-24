@@ -4,9 +4,10 @@ var halcyon = (function (halcyon) {
      * @name Table
      * @param {string} name
      * @param {Column[]} columns
+     * @memberOf halcyon
      * @constructor Table
      */
-    function Table(name, columns) {
+    halcyon.Table = function (name, columns) {
 
         /**
          * @name name
@@ -31,17 +32,6 @@ var halcyon = (function (halcyon) {
 
         //TODO Needs more methods, deleteTable, deleteColumn, addColumn etc. */
 
-    }
-
-    /**
-     * @name createTable
-     * @description function to create a table within a database
-     * @param {string} name
-     * @param {Column[]} cols
-     * @memberOf halcyon
-     */
-    halcyon.createTable = function (name, cols) {
-        return new Table(name, cols);
     };
 
     return halcyon;

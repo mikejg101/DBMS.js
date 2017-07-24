@@ -4,9 +4,10 @@ var halcyon = (function (halcyon) {
      * @name Column
      * @param {string} name
      * @param {string} type
+     * @memberOf halcyon
      * @constructor Column
      */
-    function Column(name, type) {
+    halcyon.Column = function (name, type) {
 
         /**
          * @name name
@@ -22,17 +23,6 @@ var halcyon = (function (halcyon) {
          */
         this.type = type;
 
-    }
-
-    /**
-     * @name createColumn
-     * @description function to create a table within a database
-     * @param {string} name
-     * @param {string} type
-     * @memberOf halcyon
-     */
-    halcyon.createColumn = function (name, type) {
-        return new Column(name, type);
     };
 
     return halcyon;

@@ -3,9 +3,10 @@ var halcyon = (function (halcyon, databases, storage) {
     /**
      * @name Database
      * @param {string} name
+     * @memberOf halcyon
      * @constructor Database
      */
-    function Database(name) {
+    halcyon.Database = function (name) {
         var tables = halcyon.CreateTableCollection();
 
         /**
@@ -31,7 +32,7 @@ var halcyon = (function (halcyon, databases, storage) {
          * @memberOf Database
          */
         this.addTable = function (name, columns) {
-            tables.insert(halcyon.createTable(name, columns));
+            tables.insert(new halcyon.Table(name, columns));
             storage.postAll();
         };
 
@@ -44,7 +45,7 @@ var halcyon = (function (halcyon, databases, storage) {
             tables.clear();
             storage.postAll();
         };
-    }
+    };
 
     /**
      * @name createDatabase
@@ -53,7 +54,7 @@ var halcyon = (function (halcyon, databases, storage) {
      * @memberOf halcyon
      */
     halcyon.createDatabase = function (name) {
-        databases.insert(new Database(name));
+        databases.insert(new halcyon.Database(name));
         storage.postAll();
     };
 
